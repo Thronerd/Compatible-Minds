@@ -1,0 +1,82 @@
+﻿@model Models.Booking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Residence.ResName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Residence.ResName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.student.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.student.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.roomId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roomId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bookingdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bookingdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.blockCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blockCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bookingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

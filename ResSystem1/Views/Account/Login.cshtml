@@ -1,0 +1,113 @@
+﻿@using Models
+@model Models.LoginViewModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Log in";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Bootstrap Advance Admin Template</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="~/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <script src="~/assets/js/jquery-1.10.2.js"></script>
+    <script src="~/assets/js/bootstrap.js"></script>
+    <script src="~/assets/js/jquery.metisMenu.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/jquery.js")" charset="utf-8"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/jquery-ui.js")" charset="utf-8"></script>
+    <script src="~/assets/js/wizard/modernizr-2.6.2.min.js"></script>
+    <script src="~/assets/js/wizard/jquery.cookie-1.3.1.js"></script>
+    <script src="~/assets/js/wizard/jquery.steps.js"></script>
+   
+</head>
+<body style="background-color: #E2E2E2;">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p id="Feedback"></p>
+        <div class="container">
+            <div class="row text-center " style="padding-top:100px;">
+                <div class="col-md-12">
+                    <b><h1 style="font-family: Times New Roman">Student Accommodation </h1></b>
+                </div>
+            </div>
+            <div class="row ">
+
+                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+
+                    <div class="panel-body">
+                        <form role="form">
+                            <hr />
+                            <h5>Enter Details to Login</h5><span class="pull-right">
+                                @Html.ActionLink("Home", "HomeIndex", "Home")
+                            </span>
+                            <br />
+
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                                @{
+                                    if (Session["Username"] != null)
+                                    {
+                                        <input name="Username" id="Username" type="text" value="@Session["Username"]" class="form-control" onchange="myFunction()" required />
+                                    }
+                                    else
+                                    {
+                                        <input name="Username" id="Username" type="text" class="form-control" onchange="myFunction()" required />
+                                    }
+                                }
+                                
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-inline">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </label>
+                                <span class="pull-right">
+                                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                                </span>
+                            </div>
+                            <input type="submit" value="Log in" class="btn btn-primary" />
+                            <p>
+                                @Html.ActionLink("Register as a new user", "Register")
+                            </p>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*<div>
+                <section id="socialLoginForm">
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ~/images/ })
+                </section>
+            </div>*@
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+@RenderSection("scripts", required: false)
+    }
+
+    
+</body>
+
+</html>

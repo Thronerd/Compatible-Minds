@@ -1,0 +1,42 @@
+﻿@model Models.ApplyingCommand
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ApplyingCommand</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyingO_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyingO_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyingC_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyingC_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Semester)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Semester)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ApplyingYear }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

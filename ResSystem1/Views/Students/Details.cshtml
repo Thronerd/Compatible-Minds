@@ -1,0 +1,138 @@
+﻿@model Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.blockCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blockCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.yearOfStudy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.yearOfStudy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.course)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.course)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.physicalAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.physicalAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.registrationYr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registrationYr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoOfModules)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoOfModules)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.funder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.funder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.levelOfStudy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.levelOfStudy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.financialStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.financialStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.studentNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

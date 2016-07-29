@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Models.Booking>
+
+@{
+    ViewBag.Title = "BookingMade";
+}
+
+<h1 style="text-align:center; font-family:'Times New Roman'">Submitted Applications Page</h1>
+
+
+
+    <div class="col-md-10">
+        <!--   Basic Table  -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Submitted Applications
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Residence.ResName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.student.FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.RoomType)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Bookingdate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.year)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.blockCode)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Choice)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Residence.ResName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.student.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RoomType)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Bookingdate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.year)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.blockCode)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Choice)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Cancel", "Delete", "Bookings", new { id = item.bookingId }, null)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    
+                    <a href="~/Applications/Index" class="btn btn-default">New Record</a>
+                </div>
+            </div>
+        </div>
+    </div>

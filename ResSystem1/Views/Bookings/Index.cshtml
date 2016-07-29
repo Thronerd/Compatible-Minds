@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Models.Booking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    <br /><p style="color:red">@Session["ErorrBookings"]</p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Residence.ResName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.student.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.roomId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bookingdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.blockCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Residence.ResName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.roomId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bookingdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.blockCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.bookingId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.bookingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.bookingId })
+        </td>
+    </tr>
+}
+
+</table>

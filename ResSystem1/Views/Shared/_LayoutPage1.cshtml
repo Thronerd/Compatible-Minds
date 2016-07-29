@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DUT Student Accommodation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="~/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row0">
+        <div id="topbar" class="clear">
+            <!-- ################################################################################################ -->
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="http://www.cao.ac.za/IDLookup.aspx ">A - Z Index</a></li>
+                    @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                            @Html.AntiForgeryToken()
+<li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+
+                        }
+                    }
+                    else
+                    {
+                        <li><a href="~/Home/StudentConf">Student Login</a></li>
+                        <li><a href="~/Account/Login">Staff Login</a></li>
+                    }
+                    
+                </ul>
+            </nav>
+            <!-- ################################################################################################ -->
+        </div>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row1">
+        <header id="header" class="clear">
+            <!-- ################################################################################################ -->
+            <div id="logo" class="fl_left">
+                <h1><a href="~/Home/HomeIndex">DUT Student Accommodation</a></h1>
+                <p>Apply Online For a Residence</p>
+            </div>
+            <div class="fl_right">
+                <form class="clear" method="post" action="#">
+                    <fieldset>
+                        <legend>Search:</legend>
+                        <input type="text" value="" placeholder="Search Here">
+                        <button class="fa fa-search" type="submit" title="Search"><em>Search</em></button>
+                    </fieldset>
+                </form>
+            </div>
+            <!-- ################################################################################################ -->
+        </header>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row2">
+        <div class="rounded">
+            <nav id="mainav" class="clear">
+                <!-- ################################################################################################ -->
+                <ul class="clear">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="~/Residences/Index">Apply</a></li>
+                    @*<li>
+                        <a class="drop" href="#">Pages</a>
+                        <ul>
+                            <li><a href="pages/gallery.html">Gallery</a></li>
+                            <li><a href="pages/portfolio.html">Portfolio</a></li>
+                            <li><a href="pages/full-width.html">Full Width</a></li>
+                            <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
+                            <li><a href="pages/sidebar-left-2.html">Sidebar Left 2</a></li>
+                            <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
+                            <li><a href="pages/sidebar-right-2.html">Sidebar Right 2</a></li>
+                            <li><a href="pages/basic-grid.html">Basic Grid</a></li>
+                        </ul>
+                    </li>*@
+                    <li>
+                        <a class="drop" href="#">Activities</a>
+                        <ul>
+                            <li><a href="#">Events</a></li>
+                            <li>
+                                <a class="drop" href="#">Sport</a>
+                                <ul>
+                                    <li><a href="#">Soccer</a></li>
+                                    <li><a href="#">NetBall</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">DUT Home Page</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <!-- ################################################################################################ -->
+            </nav>
+        </div>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    
+    <div class="wrapper row3">
+        <div class="rounded">
+            <main class="container clear">
+                @RenderBody()
+                <div class="clear"></div>
+            </main> 
+            </div>
+        </div>
+        <div class="wrapper row4">
+            <div class="rounded">
+                <footer id="footer" class="clear">
+                    <!-- ################################################################################################ -->
+                    <div class="one_third first">
+                        <figure class="center">
+                            <img class="btmspace-15" src="~/images/demo/worldmap.png" alt="">
+                            <figcaption><a href="#">Find Us With Google Maps &raquo;</a></figcaption>
+                        </figure>
+                    </div>
+                    <div class="one_third">
+                        <address>
+                            Long Educational Facility Name<br>
+                            Address Line 2<br>
+                            Town/City<br>
+                            Postcode/Zip<br>
+                            <br>
+                            <i class="fa fa-phone pright-10"></i> xxxx xxxx xxxxxx<br>
+                            <i class="fa fa-envelope-o pright-10"></i> <a href="#">contact@domain.com</a>
+                        </address>
+                    </div>
+                    <div class="one_third">
+                        <p class="nospace btmspace-10">Stay Up to Date With What's Happening</p>
+                        <ul class="faico clear">
+                            <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="faicon-flickr" href="#"><i class="fa fa-flickr"></i></a></li>
+                            <li><a class="faicon-rss" href="#"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+                        <form class="clear" method="post" action="#">
+                            <fieldset>
+                                <legend>Subscribe To Our Newsletter:</legend>
+                                <input type="text" value="" placeholder="Enter Email Here&hellip;">
+                                <button class="fa fa-sign-in" type="submit" title="Sign Up"><em>Sign Up</em></button>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <!-- ################################################################################################ -->
+                </footer>
+            </div>
+        </div>
+
+        <div class="wrapper row5">
+            <div id="copyright" class="clear">
+                <!-- ################################################################################################ -->
+                <p class="fl_left">Copyright &copy; @DateTime.Now.Year - All Rights Reserved - <a href="#">Domain Name</a></p>
+
+            <!-- ################################################################################################ -->
+        </div>
+    </div>
+    @*<script type="text/javascript">
+    $(document).ready(function () {
+        function myFunction() {
+            $("#Username").change(function () {
+                var Username = $(this).val();
+                $.ajax({
+                    url: '@Html.Action("ValidStudent")',
+                    type: 'POST',
+                    data: JSON.stringify({ Username: Username }),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data != "" || data != null) {
+                            $("#display").html(data);
+                            alert(data);
+                        }
+                    }
+                });
+            });
+        };
+    });
+    </script>*@
+    <script src="~/layout/scripts/jquery.min.js"></script>
+    <script src="~/layout/scripts/jquery.fitvids.min.js"></script>
+    <script src="~/layout/scripts/jquery.mobilemenu.js"></script>
+    <script src="~/layout/scripts/tabslet/jquery.tabslet.min.js"></script>
+</body>
+</html>

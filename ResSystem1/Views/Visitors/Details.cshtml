@@ -1,0 +1,50 @@
+﻿@model Models.Visitor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visitor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.student.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.student.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timeIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timeIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timeOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timeOut)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.visitorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

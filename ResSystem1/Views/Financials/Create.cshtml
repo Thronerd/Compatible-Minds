@@ -1,0 +1,87 @@
+﻿@model Models.Financial
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "Financials", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <p></p>
+    <p></p>
+    <p></p>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default credit-card-box">
+                    <div class="panel-heading display-table">
+                        <div class="row display-tr">
+                            <h3 style="font-family:'Times New Roman', Times, serif" class="panel-title display-td">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                Financial Aid
+                            </h3>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="">
+                        @Html.DropDownListFor(model => model.funder, new List<SelectListItem>
+                      {
+                    new SelectListItem {  Text = "Self-payer",Value = "Self-payer" },
+                    new SelectListItem { Text = "Nsfas" , Value = "Nsfas"},
+                    new SelectListItem {  Text = "Bursary",Value = "Bursary" }
+                     }, "- Who's paying fees? -",
+                   htmlAttributes: new { @class = "form-control", onchange = "fundercode()" })
+                    </div>
+
+                    <br />
+
+                  
+                    <div class="container" hidden="hidden" id="paymentOption">
+                        <p>
+                            Already paid
+                            <input id="rdp" onclick="ok()" name="funds" type="radio" />
+                             Not paid
+                        <input id="rdnp" onclick="unpaid()" name="funds" type="radio" />
+                        </p>
+                    </div>
+
+
+                    <div class="container" hidden="hidden" id="nsfass">
+
+                        click <a href="~/Financials/Create">here</a> to check status
+                        @ViewBag.results
+
+
+                    </div>
+                    <div class="container" hidden="hidden" id="bursary">
+                        <p>
+                            <input id="bursary" onchange="" name="Bursary" type="tel" />
+
+                        </p>
+
+                    </div>
+
+                    <div class="container" hidden="hidden" id="ref2">
+                        <p>
+                        @Html.Action("Create", "OnlinePayments")
+                        </p>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        @*<div class="row">
+                <div class="col-xs-12">
+                    <input class="btn btn success" id="submit2" type="submit" value="Submit" />
+
+                </div>
+            </div>*@
+
+    </div>
+
+
+}

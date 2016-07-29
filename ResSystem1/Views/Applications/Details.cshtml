@@ -1,0 +1,100 @@
+﻿
+<script type="text/javascript">
+    //$(document).ready(function () {
+
+    @*function CheckingChoice() {
+        var choice = $('#Choice').val();
+        $.ajax({
+            url: '@Html.Action("CheckingChoice")',
+            type: 'POST',
+            data: JSON.stringify({ choice: choice }),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                if (data != "" || data != null) {
+                    alert(data);
+                }
+            }
+        });
+    }*@
+
+    $(document).load(function () {
+        var rmtype = $("#RmType").html();
+
+        if (rmtype == "Sharing") {
+            alert("Error");
+            $("#Display").html("2 beds, 1 Fridge");
+        }
+    });
+   
+
+        function Myfunction()
+        {
+            var rmtype = $("#RmType").html();
+
+            if(rmtype == "Sharing")
+            {
+                $("#Display").html("2 beds, 1 Fridge");
+            }
+            else
+                if (rmtype == "Single")
+            {
+                    $("#Display").html("1 beds, 1 Fridge");
+                }
+                else {
+                        $("#Display").html("");
+                    }
+        }
+    //});
+</script>
+
+<p>@Session["Times"]</p>
+<div class="col-md-8" onload="Myfunction()">
+    <!--   Kitchen Sink -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Booking
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Room Type</th>
+                            <th>Semester</th>
+                            <th>Year</th>
+                            <th>Choice</th>
+                            <th>Reservation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @using (Html.BeginForm())
+                        {
+                        <tr>
+                            <td id="RmType">
+                            @*@Html.DropDownList("RmType", (SelectList)ViewBag.RmType, "Select Room type", new { @class = "form-control", onchange = "Myfunction()" })*@
+                                @ViewBag.RmTple <input type="hidden" name="RoomType" value="@ViewBag.RmTple" /><br /><br /><p style="font-size:12px;">@ViewBag.Details</p>
+                            </td>
+                            <td>@ViewBag.Semester<input type="hidden" name="Semester" value="@ViewBag.Semester" /></td>
+                            <td>@ViewBag.Year<input type="hidden" name="Year" value="@ViewBag.Year" /></td>
+                            <td><select name="Choice" required onchange="CheckingChoice()">
+                                    <option value=""></option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>@Session["Error"]</td>
+                            
+                            
+                            <td><input type="submit" value="Reserv"/> <br />@Session["Maximum"]</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <a href="~/Applications/BookingMade" class="btn btn-default">View Records</a>
+            </div>
+        </div>
+    </div>
+    <!-- End  Kitchen Sink -->
+</div>
+
+

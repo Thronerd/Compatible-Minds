@@ -1,0 +1,58 @@
+﻿@model Models.Allocation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Allocation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking.studentNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Booking.studentNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.residenceCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.residenceCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.roomId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roomId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.blockCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blockCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AllocationRefNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

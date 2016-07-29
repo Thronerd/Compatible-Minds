@@ -1,0 +1,557 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @using Microsoft.AspNet.Identity
+    @using Data
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Baltimore Res</title>
+    <!-- Favicon -->
+    <link href="favicon.ico" rel="shortcut icon">
+    <!-- Google Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/assets/css/bootstrap.css")
+    @Styles.Render("~/assets/css/font-awesome.css")
+    @Styles.Render("~/assets/css/basic.css")
+    @Styles.Render("~/assets/css/custom.css")
+
+    <script src="~/assets/js/jquery-1.10.2.js"></script>
+    <script src="~/assets/js/bootstrap.js"></script>
+    <script src="~/assets/js/jquery.metisMenu.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/jquery.js")" charset="utf-8"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/jquery-ui.js")" charset="utf-8"></script>
+
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="~/assets/css/font-awesome.css" rel="stylesheet" />
+    <!--PAGE LEVEL STYLES-->
+    <link href="~/assets/css/pricing.css" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap-fileupload.min.css" rel="stylesheet" />
+    <script src="~/assets/js/bootstrap-fileupload.js"></script>
+    <!--CUSTOM BASIC STYLES-->
+    <link href="~/assets/css/basic.css" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="~/assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!--WIZARD STYLES-->
+    <link href="~/assets/css/wizard/normalize.css" rel="stylesheet" />
+    <link href="~/assets/css/wizard/wizardMain.css" rel="stylesheet" />
+    <link href="~/assets/css/wizard/jquery.steps.css" rel="stylesheet" />
+
+    <script src="~/assets/js/wizard/modernizr-2.6.2.min.js"></script>
+    <script src="~/assets/js/wizard/jquery.cookie-1.3.1.js"></script>
+    <script src="~/assets/js/wizard/jquery.steps.js"></script>
+
+
+    <style type="text/css">
+        .tableKay {
+            border-collapse: collapse;
+            border: 1px solid;
+            border-color: black;
+        }
+
+            .tableKay th {
+                text-align: left;
+                background-color: #3a6070;
+                color: #FFF;
+                padding: 1px;
+                border: 1px solid;
+            }
+
+            .tableKay td {
+                border: 2px solid black;
+            }
+
+            .tableKay tr:nth-child(odd) td {
+                background-color: #e7edf0;
+            }
+    </style>
+    <script >
+
+
+
+         $(document).ready(function () {
+            $('#CheckIn').datepicker({
+                numberOfMonths: 2,
+                firstDay: 1,
+                dateFormat: 'mm/dd/yy',
+                minDate: '0',
+                maxDate: '+2Y',
+                onSelect: function (dateStr) {
+                    var min = $(this).datepicker('getDate');
+                    $('#CheckOut').datepicker('option', 'minDate', min || '0');
+                    datepicked();
+                }
+            });
+            $('#CheckOut').datepicker({
+                numberOfMonths: 2,
+                firstDay: 1,
+                dateFormat: 'mm/dd/yy',
+                minDate: '0',
+                maxDate: '+2Y',
+                onSelect: function (dateStr) {
+                    var max = $(this).datepicker('getDate');
+                    $('#from').datepicker('option', 'maxDate', max || '+2Y');
+                    datepicked();
+                }
+            });
+        });
+
+        var datepicked = function () {
+            var from = $('#CheckIn');
+            var to = $('#CheckOut');
+            var nights = $('#nights');
+
+            var CheckIn = from.datepicker('getDate');
+
+            var CheckOut = to.datepicker('getDate');
+
+            if (CheckIn && CheckIn) {
+                var difference = 0;
+                var oneDay = 1000 * 60 * 60 * 24;
+                var difference = Math.ceil((CheckOut.getTime() - CheckIn.getTime()) / oneDay);
+                nights.val(difference);
+
+
+                if ($('#CheckIn').val() == '') {
+                    alert('Please select check-in date');
+                    return false;
+                }
+                if ($('#CheckOut').val() == '') {
+                    alert('Please select check-out date');
+                    return false;
+                }
+
+
+                //calculating payment
+
+
+            }
+        }
+
+
+         function fundercode() {
+
+           
+                if($("#funder").val()=="Self-payer")
+                {
+                    $("#paymentOption").show();
+                }
+                else $("#paymentOption").hide(); $("#ref2").hide(), $("#bursary").hide(), $("#nsfass").hide();
+
+
+              if ($("#funder").val() == "Nsfas") {
+
+                  $("#nsfass").show();
+                  $("#paymentOption").hide();
+            }
+            else $("#nsfass").hide(), $("#ref2").hide(),$("#bursary").hide(),$("#").hide();
+
+            if ($("#funder").val() == "Bursary") {
+                $("#bursary").show();
+                $("#paymentOption").hide();
+            }
+            else $("#bursary").hide(), $("#fld2").hide(), $("#").hide();
+
+
+            if($("#funder").val()!="Nsfas")
+            {
+               @Session["bursary"];
+            }
+
+
+        }
+
+
+
+        function unpaid() {
+            var radioValue = $("input[name='funds']:checked").val();
+
+            if (radioValue == $("#rdnp").val()) {
+                $("#ref2").show();
+              
+            }
+            else $("#ref2").hide();
+
+
+
+        }
+
+
+        function paid() {
+            var radioValue = $("input[name='funds']:checked").val();
+
+            if (radioValue == $("#rdap").val()) {
+                $("#refnoo").show();
+                $("#ref2").hide();
+            }
+            else $("#refnoo").hide();
+
+            function ok() {
+                if ($("input[name='funds']:checked").val() == $("#rdp").val()) {
+                    $("#refnoo").show();
+                }
+            }
+        }
+
+
+        function cardType() {
+            var americanexp = /^(?:3[47][0-9]{13})$/;
+            var mastercard = /^(?:5[1-5][0-9]{14})$/;
+            var visa = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+            var discover = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
+
+
+            $form.find('[type=submit]').html('Validating <i class="fa fa-spinner fa-pulse"></i>');
+
+            if ($("#ddlcardtype").val() == "American express" && $("#cardNumber").val().match(americanexp)) {
+                $("#paynow").html('Validating <i class="fa fa-spinner fa-pulse"></i>');
+                $("#paynow").prop('disabled', false);
+                return true;
+            }
+
+            if ($("#ddlcardtype").val() == "American express" && $("#cardNumber").val() != americanexp) {
+                $("#paynow").prop('disabled', true);
+                $("#paynow").html('Validating <i class="fa fa-spinner fa-pulse"></i>');
+                document.getElementById("oho").innerHTML = "Not a valid american express number!";
+                return false;
+
+            }
+
+
+
+            if ($("#ddlcardtype").val() == "Master card" && $("#cardNumber").val().match(mastercard)) {
+                $("#paynow").prop('disabled', false);
+                return true;
+            }
+
+
+
+
+            if ($("#ddlcardtype").val() == "Master card" && $("#cardNumber").val() != mastercard) {
+                $("#paynow").prop('disabled', true);
+                document.getElementById("oho").innerHTML = "Not a valid master card number!";
+                return false;
+            }
+
+            if ($("#ddlcardtype").val() == "Visa" && $("#cardNumber").val().match(visa)) {
+                $("#paynow").prop('disabled', false);
+                return true;
+            }
+
+            if ($("#ddlcardtype").val() == "Visa" && $("#cardNumber").val() != visa) {
+                $("#paynow").prop('disabled', true);
+                document.getElementById("oho").innerHTML = "Not a valid visa card number!";
+            }
+
+            if ($("#ddlcardtype").val() == "Discover" && $("#cardNumber").val().match(discover)) {
+                $("#paynow").prop('disabled', false);
+
+                return true;
+            }
+
+            if ($("#ddlcardtype").val() == "Discover" && $("#cardNumber").val() != discover) {
+                $("#paynow").prop('disabled', true);
+                document.getElementById("oho").innerHTML = "Not a valid visa card number!";
+            }
+
+
+
+        }
+
+
+        //function checkccvno(ccvno) {
+        //    var myRe = /^[0-9]{3,4}$/;
+        //    var myArray = myRe.exec(ccvno);
+
+        //    if (ccvno != myArray) {
+        //        alert("Invalid ccv number");
+        //        $("#paynow").prop('disabled', true);
+        //        return false;
+        //    }
+        //    else {
+        //        return true;
+        //    }
+        //}
+
+        function getRoom() {
+
+            var occupation = $("#occupant").val();
+            var rooms = $("#RoomType").val();
+            var amount = $("#amountpernight").val();
+            var Type = $("#Type").val();
+            var guests = $("#Guests").val();
+            var nxt1 = $("#next1").val('');
+            var chckin = $('#CheckIn').val();
+
+
+
+
+
+
+            if (rooms == 1 && guests > 2) {
+
+                $("#next1").hide();
+                alert("maximum has reached this room accomodates not more than 2 guests").val();
+            }
+            else if (true) {
+                $("#next1").show();
+
+            }
+
+
+
+            if (rooms == 2 && guests > 3) {
+                $("#next1").hide();
+
+                alert("maximum has reached this room accomodates not more than 3 guests please lower guests to continue").val();
+
+
+            }
+            else if (true) {
+                $("#next1").show();
+
+            }
+            if (rooms == 3 && guests > 4) {
+                $("#next1").hide();
+
+                alert("maximum has reached this room accomodates not more than 4 guests please lower guests to continue").val();
+
+            }
+            else if (true) {
+                $("#next1").show();
+
+            }
+            if (rooms == 4 && guests > 5) {
+                $("#next1").hide();
+
+                alert("maximum has reached this room accomodates not more than 5 guests please lower guests to continue").val();
+
+            }
+            else if (true) {
+                $("#next1").show();
+
+            }
+            var difference = $("#nights").val();
+            var rooms = $("#RoomType").val();
+            var amountpernight = $('#amountpernight');
+            var guests = $("#Guests").val();
+            var st1 = 150;
+            var st2 = 250;
+            var st3 = 520;
+            var qua = $("#Quantity").val()
+
+            if (rooms == 1 && guests == 2) {
+                var Amount = ("$" + (st1 * qua) * difference);
+                amountpernight.val(Amount);
+            }
+            else if (false) {
+                $("#next1").hide();
+                alert("maximum has reached this room accomodates not more than 2 guests").val();
+            }
+            if (rooms == 2) {
+                var Amount = ("$" + (st1 * qua) * difference);
+                amountpernight.val(Amount);
+            }
+            else if (rooms == 3) {
+                var Amount = ((st1 * qua) * difference);
+                amountpernight.val(Amount);
+            }
+
+
+        }
+
+        function myFunction() {
+            $("#StudID").change(function () {
+                var StudID = $(this).val();
+                $.ajax({
+                    url: '~/Home/ChangeEvent"',
+                    type: 'POST',
+                    data: JSON.stringify({ StudID: StudID }),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data != "" || data != null) {
+                            $("#exist").val(data);
+                            alert(data);
+                        }
+                        else
+                            if (data == "") {
+                                alert("Our system does not recognize this id.");
+                                $("#StudID").focus();
+                            }
+                    }
+                });
+            });
+        };
+        $(document).ready(function () {
+    function fileCheck(obj) {
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+        if ($.inArray($(obj).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only '.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
+        }
+    }
+    function chang(obj) {
+        $(obj).change(function () {
+            var selected = $(this).val();
+            $('#display').html(selected);
+        })
+    }
+        });
+
+
+    </script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div class="primary-container-group">
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="~/Home/HomeIndex"><img src="~/Assets/images/dut_logo.jpg" width="200px" height="65px"/></a>
+
+                </div>
+               
+                <div class="header-right">
+                    @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                            @Html.AntiForgeryToken()
+
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-danger" title="Logout">Logout&nbsp;<i class="fa fa-exclamation-circle fa-2x"></i></a>
+
+                        }
+                    }
+                    else
+                    {
+                        <a href="~/Account/Login" class="btn btn-danger" title="Login">Login&nbsp;<i class="fa fa-desktop"></i></a>
+                    }
+
+
+                </div>
+
+            </nav>
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+
+
+                        <li>
+                            <a class="active-menu" href="~/Home/Index"><i class="fa fa-dashboard "></i>Dashboard</a>
+                        </li>
+                        <li>@Html.ActionLink("       Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class= "fa fa-square-o" })
+</li>
+                                    <li>
+                                        <a href="~/Residences/Index"><i class="fa fa-toggle-on"></i>Booking</a>
+                                    </li>
+
+                                <li>
+                                    <a href="~/Bookings/Create"><i class="fa fa-desktop "></i>Residence Status</a>
+                                </li>
+                     
+
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap "></i>Residence registrationn<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+
+                                <li>
+                                        <a href="~/Financials/Create"><i class="fa fa-arrow-down"></i>submit registration</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-briefcase"></i>proof of registration</a>
+                                    </li>
+                            </ul>
+                        </li>
+
+                        <li>
+
+                            <a href="~/Other/Gallery"><i class="fa fa-anchor "></i>Visitors</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap "></i>Finance<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+
+                                <li>
+
+                                    <a href="~/FinancialStatement/Index"><i class="fa fa-anchor "></i>Financial Statement</a>
+                                </li>
+                                <li>
+
+                                    <a href="~/Payment/Index"><i class="fa fa-anchor "></i>Pay Online</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                       
+
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap "></i>Res Admin<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="~/Students/Index"><i class="fa fa-bicycle "></i>Reports</a>
+                                </li>
+                                <li>
+                                    <a href="~/CheckLists/Index"><i class="fa fa-code  "></i>Residences</a>
+                                </li>
+                                <li>
+                                    <a href="~/Clothings/Index"><i class="fa fa-bicycle "></i>Applications</a>
+                                </li>
+                                <li>
+                                    <a href="~/Clothings/Index"><i class="fa fa-bicycle "></i>Allocation</a>
+                                </li>
+                                <li>
+                                    <a href="~/ApplyingCommands/Index"><i class="fa fa-bicycle "></i>Booking Commands</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </nav>
+
+            <div id="page-wrapper">
+                <div id="page-inner">
+
+                    <div id="content">
+                        <div id="page-inner">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <div class="container">
+        <div class="row">
+
+            <footer>
+                <p>&copy; @DateTime.Now.Year - DUT Baltimore Res</p>
+            </footer>
+        </div>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

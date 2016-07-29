@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Models.Payment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.amountPaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.File)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.amountPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileName)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.File)*@
+           <a href="~/Payment/Edit/@item.recieptNo" type="text/html"  name="@item.File"><img width="45px" height="30px" src="~/Assets/images/attachment-icon.png" /></a>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.recieptNo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.recieptNo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.recieptNo })
+        </td>
+    </tr>
+}
+
+</table>

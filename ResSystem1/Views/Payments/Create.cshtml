@@ -1,0 +1,81 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+@model Models.Payment
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h2 align="center" style="font-family: 'Times New Roman', Times, serif">Payment Details</h2>
+                </div>
+                @ViewBag.Content
+
+                @using (Html.BeginForm("Create", "Payments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="panel-body" style="padding: 0px;">
+                        <div class="chat-widget-main">
+                            <div class="col-md-6">
+
+
+
+                                <div class="Editor-Field">
+                                    @Html.EditorFor(model => model.recieptNo, new { htmlAttributes = new { @class = "form-control", placeholder = "Bank receipt no" } })
+                                    @Html.ValidationMessageFor(model => model.recieptNo)
+                                </div>
+                                <br />
+
+                                <div class="Editor-Field">
+                                    @Html.EditorFor(model => model.amountPaid, new { htmlAttributes = new { @class = "form-control", placeholder = "Amount paid" } })
+                                    @Html.ValidationMessageFor(model => model.amountPaid)
+                                </div>
+                                <br />
+
+                                <div class="Editor-Field">
+                                    @Html.TextBoxFor(x => x.File, new { type = "file", title = "Upload bank receipt", @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.File)
+                                </div>
+                                <br />
+
+                                <div class="panel-footer">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <input type="submit" value="Submit payment" class="btn btn-default" />
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+

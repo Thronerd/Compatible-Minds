@@ -1,0 +1,96 @@
+﻿@model Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="~/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <script src="~/assets/js/jquery-1.10.2.js"></script>
+    <script src="~/assets/js/bootstrap.js"></script>
+    <script src="~/assets/js/jquery.metisMenu.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/jquery.js")" charset="utf-8"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/jquery-ui.js")" charset="utf-8"></script>
+    <script src="~/assets/js/wizard/modernizr-2.6.2.min.js"></script>
+    <script src="~/assets/js/wizard/jquery.cookie-1.3.1.js"></script>
+    <script src="~/assets/js/wizard/jquery.steps.js"></script>
+
+</head>
+<body style="background-color: #E2E2E2;">
+
+
+    <h2 align="center" style="font-family:'Times New Roman', Times, serif ">Create a new account.</h2>
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <div id="content">
+            <div class="container">
+                <div class="row margin-vert-30">
+                    <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
+                        <form class="signup-page">
+
+                            <div class="signup-header">
+                                <h3>Login Details</h3>
+                            </div><hr />
+                            <label> Email Address</label>
+                            @{
+                                    <input type="text" name="Username" value=@Session["Username"] class="form-control margin-bottom-20" />
+                                    <input name="Email" type="email" value=@Session["EmailAddress"] class="form-control margin-bottom-20" />
+ }
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>
+                                        Password
+                                        <span class="color-red">*</span>
+                                    </label>
+                                         <input name="password" type="password" value=@Session["Password"] class="form-control margin-bottom-20" />
+                             
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>
+                                        Confirm Password
+                                        <span class="color-red">*</span>
+                                    </label>
+
+                                            <input name="Confirmpassword" type="password" value=@Session["Password"] class="form-control margin-bottom-20" required />
+                                        
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <label class="checkbox">
+                                    </label>
+                                </div>
+                                <input type="submit" class="btn btn-default" value="Proceed" />
+                            </div>
+                        </form>
+                        @Session["Feedback"]
+                    </div>
+                </div>
+            </div>
+        </div>
+                                        }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "AddNewRole";
+}
+
+<h2>AddNewRole</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div>
+        <div class="panel-default">
+        </div>
+        <pre>
+<label>New Role</label>
+        <input type="text" name="NewRole" />
+</pre>
+        <input type="submit" value="Submit" />@ViewBag.error
+    </div>
+}

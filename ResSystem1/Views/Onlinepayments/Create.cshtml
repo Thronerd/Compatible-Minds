@@ -1,0 +1,168 @@
+﻿@model Models.OnlinePayment
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+  
+
+    @ViewBag.results
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div id="paymentcont" class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-5">
+                    <div class="panel panel-default credit-card-box">
+                        <hr />
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <div class="panel-heading display-table">
+                            <div class="row display-tr">
+                                <h3 class="panel-title display-td">Payment Details</h3>
+                                <div class="display-td">
+                                    <img class="img-responsive" src="~/Assets/images/accepted_c22e0[1].png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
+
+                                <p>
+                                    <select id="ddlcardtype" name="cardtype" class="form-control">
+                                        <option value="0">- Select card type -</option>
+                                        <option value="American express">American express</option>
+                                        <option value="Master card">Master card</option>
+                                        <option value="Visa">Visa</option>
+                                        <option value="Discover">Discover</option>
+                                    </select>
+                                </p>
+
+                                <p>
+                                    <div class="input-group">
+                                        <input type="text"
+                                               class="form-control"
+                                               name="cardNumber"
+                                               id="cardNumber"
+                                               onchange="cardType()"
+                                               placeholder="Valid Card Number"
+                                               required autofocus />
+                                        <div id="oho" style="color:red"></div>
+                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                    </div>
+
+                                </p>
+
+                                <p>
+                                    <label>Expiry Date</label>
+                                    <select name="expiryDate" id="exMonth" title="select a month">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+
+                                    <select name="expiryDate" id="exYear" title="select a year">
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                    </select>
+                                </p>
+
+                                <p>
+                                    <div class="input-group">
+                                        <input type="tel"
+                                               class="form-control"
+                                               name="cardholderName"
+                                               id="cardholderName"
+                                               onchange="cardtype()"
+                                               placeholder="Card holder name"
+                                               required autofocus />
+                                        <span class="input-group-addon"></span>
+                                    </div>
+                                </p>
+                                <p>
+                                    <div class="input-group">
+                                        <input type="tel"
+                                               class="form-control"
+                                               name="ccvn"
+                                               onchange="checkccvno(ccvn)"
+                                               placeholder="CCV Number"
+                                               required autofocus />
+                                    </div>
+                                </p>
+
+                                <p>
+                                    <div class="input-group">
+                                        <input type="tel"
+                                               class="form-control"
+                                               name="amount"
+                                               id="amount"
+                                               onchange="cardtype()"
+                                               placeholder="Enter amount"
+                                               required autofocus />
+                                        <span class="input-group-addon"></span>
+                                    </div>
+                                </p>
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <button class="subscribe btn btn-success btn-lg btn-block" onclick="cardtype(), checkccv(cvvs)" id="paynow" type="submit">Pay now</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+
+        <script type="text/javascript">
+
+     
+        </script>
+
+    }
+
+
+
+
+</body>
+</html>

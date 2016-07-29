@@ -1,0 +1,74 @@
+﻿@model Models.OnlinePayment
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>OnlinePayment</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.cardType)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.cardType)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.cardholderName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.cardholderName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.cardNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.cardNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ccvno)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ccvno)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.expiryDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.expiryDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.amount)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.amount)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.RefNo }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

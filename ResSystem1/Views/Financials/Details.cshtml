@@ -1,0 +1,42 @@
+﻿@model Models.Financial
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Financial</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.onlinepayment.cardType)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.onlinepayment.cardType)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.funder)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.funder)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.funderId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
